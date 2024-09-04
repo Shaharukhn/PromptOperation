@@ -1,0 +1,31 @@
+version: 0.2
+
+env:
+  variables:
+    DOCKERHUB_USERNAME: "shaharukh789"
+  parameter-store:
+    DOCKERHUB_PASSWORD: "dockerpassword"
+
+phases:
+  install:
+    runtime-versions:
+      docker: 19
+    commands:
+      - echo Logging in to DockerHub...
+      - echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
+  pre_build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t ${DOCKERHUB_USERNAME}/aidocker .
+  build:
+    commands:
+      - echo Build completed on `date`
+  post_build:
+    commands:
+      - echo Pushing the Docker image...
+      - docker push ${DOCKERHUB_USERNAME}/aidocker
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes
