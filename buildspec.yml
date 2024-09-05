@@ -13,7 +13,7 @@ phases:
       - echo "Logging in to Docker Hub..."
       - docker login -u shaharukh789 -p $DOCKER_PASSWORD
       - echo "Building Docker image..."
-      - docker build -t shaharukh789/aiwebb .
+      - docker build -t shaharukh789/aiweb .
   build:
     commands:
       - echo "Pushing Docker image to Docker Hub..."
