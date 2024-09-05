@@ -8,10 +8,8 @@ phases:
       - aws --version
   pre_build:
     commands:
-      - echo "Decrypting Docker password..."
-      - DOCKER_PASSWORD=$(aws ssm get-parameter --name tgsdockerpassword --with-decryption --query 'Parameter.Value' --output text)
       - echo "Logging in to Docker Hub..."
-      - docker login -u shaharukh789 -p $DOCKER_PASSWORD
+      - docker login -u shaharukh789 -p PC11**st
       - echo "Building Docker image..."
       - docker build -t shaharukh789/aiweb .
   build:
