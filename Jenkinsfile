@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        AWS_REGION = 'ap-south-1'  // Set your AWS region here
+    }
+
     stages {
         stage('Trigger CodeBuild') {
             steps {
